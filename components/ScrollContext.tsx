@@ -11,23 +11,26 @@ import Lenis from "lenis";
 // 1. Define the context type
 type SmoothScrollContextType = Lenis | null;
 
-// 2. Create the context with default value
+// 2. Create the context
 const SmoothScrollContext = createContext<SmoothScrollContextType>(null);
 
-// 3. Custom hook for using the context
+// 3. Custom hook
 export const useSmoothScroll = () => useContext(SmoothScrollContext);
 
-// 4. Props type for the provider
+// 4. Props for provider
 interface ScrollContextProps {
   children: ReactNode;
 }
 
 export default function ScrollContext({ children }: ScrollContextProps) {
   const [lenisRef, setLenis] = useState<Lenis | null>(null);
-  const [rafState, setRafState] = useState<number | null>(null);
 
   useEffect(() => {
+    if (typeof window === "undefined") return; // SSR guard
+
     const scroller = new Lenis();
+    setLenis(scroller);
+
     let rafId: number;
 
     const raf = (time: number) => {
@@ -36,13 +39,9 @@ export default function ScrollContext({ children }: ScrollContextProps) {
     };
 
     rafId = requestAnimationFrame(raf);
-    setRafState(rafId);
-    setLenis(scroller);
 
     return () => {
-      if (rafId) {
-        cancelAnimationFrame(rafState!);
-      }
+      cancelAnimationFrame(rafId);
       scroller.destroy();
     };
   }, []);
