@@ -23,7 +23,7 @@ const Location = () => {
           <h1> Chenchupet,</h1>
           <h1 className="text-yellow-400">TENALI,</h1>
           <h1>522201</h1>
-          <a href="9966661177">99-6666-1177</a>
+          <a href="tel:+9966661177">99-6666-1177</a>
         </div>
       </div>
     </section>
