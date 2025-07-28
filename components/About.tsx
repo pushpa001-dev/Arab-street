@@ -33,7 +33,7 @@ const About = () => {
             friends and family
           </p>
           <p className="text-lg sm:text-2xl font-sans hidden 2xl:flex">
-            Nestled in the heart of Chenchupet, Tenali (Opposite Raitu Bazaar /
+            Nestled in the heart of Chenchupet, Tenali (Opposite Raitu Bazaar 
             Bhanu Tea Stall, beside Uni Homes), Arab Street Restaurant welcomes
             guests daily from 12:00 PM to 3:00 PM and 7:30 PM to 11:00 PM
           </p>
