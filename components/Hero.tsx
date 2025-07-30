@@ -1,12 +1,48 @@
 "use client";
-import React from "react";
+
 import Image from "next/image";
 import { useSmoothScroll } from "./ScrollContext";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
+  useGSAP(()=>{
+    const t = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#hero-image",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+    t.fromTo("#hero-image", {
+      y: 0,
+      duration: 0.1,
+      ease: "power2.out",
+    }, {
+      y: -100,
+      duration: 0.1,
+      ease: "power2.out",
+    })
+    gsap.from("#hero-image", {
+      opacity: 0,
+      scale: 1.2,
+      duration: 1,
+      ease: "power2.out",
+    })
+    gsap.from("#hero-text", {
+      opacity: 0,
+      scale: 1.2,
+      duration: 1,
+      ease: "power2.out",
+    })
+
+  });
   const lenis = useSmoothScroll();
   return (
     <section className="relative h-screen flex  flex-col items-center justify-center py-10">
-      <div className="w-full h-full absolute">
+      <div id="hero-image" className="w-full h-full absolute">
         <Image
           src={"/hero.jpg"}
           alt="hero"
@@ -16,7 +52,7 @@ const Hero = () => {
         />
         <div className="absolute top-0 left-0 w-full h-full bg-neutral-600/60" />
       </div>
-      <div className="flex items-center justify-end gap-10 flex-col z-10 w-full h-full">
+      <div id="hero-text" className="flex items-center justify-end gap-10 flex-col z-10 w-full h-full">
         <h1 className="text-6xl sm:text-9xl font-overpass font-bold text-white">
           Arab <span className="text-yellow-400">Street </span>
         </h1>

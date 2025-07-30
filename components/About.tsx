@@ -1,6 +1,48 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 const About = () => {
+  const t = gsap.timeline(
+    {
+      scrollTrigger: {
+        trigger: "#about",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    }
+  );
+  useGSAP(() => {
+    gsap.fromTo("#message", {
+    scrollTrigger : {
+      trigger: "#message",
+     toggleActions: "play pause reverse pause",
+    },
+    y: 5,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power2.out",
+    }, {
+    y: -5,
+    opacity: 1,
+    duration: 0.6,
+    ease: "power2.out",
+    repeat: -1,
+    yoyo: true, 
+    scrub: true
+
+    } )
+    gsap.from("#about-text hr", {
+      scrollTrigger:'#about-text hr',
+      scaleX: 0,
+      duration: 1,
+      ease: "power2.out",
+    })
+  });
   return (
     <section
       id="about"
@@ -14,15 +56,15 @@ const About = () => {
           height={500}
           className="w-full h-full object-cover "
         />
-        <div className="absolute top-0 sm:top-10 right-20 sm:right-0 xl:right-50 px-5 py-2 rounded-2xl bg-yellow-400  z-20 shadow-2xl">
-          <p className=" text-lg sm:text-xl  font-bold">Best Biryanies</p>
+        <div id="message" className="absolute top-0 sm:top-10 right-20 sm:right-0 xl:right-50 px-5 py-2 rounded-2xl bg-yellow-400  z-20 shadow-2xl">
+          <p className=" text-lg sm:text-xl  font-bold">Best Biryanis</p>
           <div className="w-5 h-5 bg-yellow-400 absolute bottom-[-9px] left-5 rounded-sm rotate-45  " />
         </div>
       </div>
-      <div className="w-full h-full items-start justify-center  flex flex-col px-5 2xl:px-10 gap-10 2xl:gap-20">
+      <div id="about-text" className="w-full h-full items-start justify-start flex flex-col px-5 2xl:px-10 gap-10 2xl:gap-20">
         <h1 className="text-3xl sm:text-5xl font-bold font-overpass">
           About
-          <hr className="w-full text-yellow-400 h-1 bg-yellow-400" />
+          <hr className="w-full text-yellow-400 h-1 bg-yellow-400 text-start" />
         </h1>
         <div className="w-full h-full flex flex-col  gap-10">
           <p className="text-lg sm:text-2xl font-sans">

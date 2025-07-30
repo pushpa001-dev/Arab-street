@@ -18,12 +18,12 @@ export default function LeafletMap() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Marker position={position} icon={customIcon}>
-        <Popup>
+       
         <Popup>
           <h2 className="font-bold text-lg">Arab street Restaurant</h2>
           <p>Mandi Biryani & Special Dishes</p>
         </Popup>
-        </Popup>
+      
       </Marker>
     </MapContainer>
   );
