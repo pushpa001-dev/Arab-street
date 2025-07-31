@@ -6,16 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 const About = () => {
-  const t = gsap.timeline(
-    {
-      scrollTrigger: {
-        trigger: "#about",
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-    }
-  );
+ 
   useGSAP(() => {
     gsap.fromTo("#message", {
     scrollTrigger : {
@@ -40,6 +31,16 @@ const About = () => {
       scrollTrigger:'#about-text hr',
       scaleX: 0,
       duration: 1,
+      delay: 0.5,
+      ease: "power2.out",
+    })
+    gsap.from("#about-content p", {
+      scrollTrigger:'#about-content',
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      delay: 0.5,
+      stagger: 0.2,
       ease: "power2.out",
     })
   });
@@ -66,7 +67,7 @@ const About = () => {
           About
           <hr className="w-full text-yellow-400 h-1 bg-yellow-400 text-start" />
         </h1>
-        <div className="w-full h-full flex flex-col  gap-10">
+        <div id="about-content" className="w-full h-full flex flex-col  gap-10">
           <p className="text-lg sm:text-2xl font-sans">
             Arab Street offers an eclectic blend of Middle Eastern, Indian,
             Chinese, Seafood, Kebab, and Biryani dishes, drawing inspiration

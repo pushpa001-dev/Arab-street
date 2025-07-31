@@ -41,7 +41,7 @@ const Hero = () => {
   });
   const lenis = useSmoothScroll();
   return (
-    <section className="relative h-screen flex  flex-col items-center justify-center py-10">
+    <section className="relative h-screen flex  flex-col items-center justify-center py-10 overflow-hidden">
       <div id="hero-image" className="w-full h-full absolute">
         <Image
           src={"/hero.jpg"}
